@@ -13,24 +13,18 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
   const root = document.getElementById("root");
-  /* const h3 = React.createElement("h3", {
-    onMouseEnter: () => console.log("mouse enter@@@"),
-  }, "Hello Span!"); */
-  /* const btn = React.createElement("button", {
-    onClick: () => console.log('클릭!!!'),
-    style : {
-      backgroundColor: "tomato",
+  function App() {
+    const [counter, setCounter] = React.useState(0);
+    const onClick = () => {
+      setCounter((current) => counter + 1);
     }
-  }, "Click me"); */
-  /* const container = React.createElement("div", null, [Title, Button]); */
-  const Title = () => (<h3 id="title" onMouseEnter={() => console.log("mouse enter@@@")}>Hello Span!</h3>)
-  const Button = () => (<button id="btn" style={{backgroundColor:"tomato"}} onClick={() => console.log('클릭!!!')}>Hello Span!</button>)
-  const Container = () => (
-    <div>
-      <Title />
-      <Button />
-    </div>
-  );
-    ReactDOM.render(<Container />, root);
+    return (
+      <div>
+        <h3>Total Click: {counter}</h3>
+        <button onClick={onClick}>Click Me!!!</button>
+      </div>
+    )
+  }
+  ReactDOM.render(<App />, root);
 </script>
 </html>
