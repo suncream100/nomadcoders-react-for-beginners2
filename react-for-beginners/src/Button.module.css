@@ -1,0 +1,12 @@
+.btn {
+  color: white;
+  background-color: tomato;
+}
+
+.btn2 {
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 10px;
+  color: white;
+  background-color: tomato;
+}
