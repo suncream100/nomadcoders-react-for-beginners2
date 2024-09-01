@@ -1,28 +1,15 @@
-import { useState, useEffect } from "react";
-function Hello() {
-  // function byeFn() {
-  //   console.log("destroyed :(");
-  // }
-  // function hiFn() {
-  //   console.log("created :)");
-  //   return byeFn;
-  // }
-  // useEffect(hiFn, [])
-  useEffect(() => {
-    console.log("created :)");
-    return () => console.log("destroyed :(");
-  },[])
-  return <h1>Hello</h1>
-}
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./routes/Home";
+import Detail from "./routes/Detail";
+import "./common.css";
+
 function App() {
-  const [showing, setShowing] = useState(false);
-  const onClick = () => setShowing((prev) => !prev);
-  return (
-    <div>
-      <button onClick={onClick}>{showing ? "hide" : "show"}</button>
-      {showing ? <Hello /> : null}
-    </div>
-  );
+  return <Router basename={process.env.PUBLIC_URL}>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/movie/:id" element={<Detail />} />
+    </Routes>
+  </Router>
 }
 
 export default App;

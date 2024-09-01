@@ -1,0 +1,76 @@
+/* reset */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,button{margin:0;padding:0}
+fieldset,img{border:0 none}
+dl,ul,ol,menu,li{list-style:none}
+blockquote, q{quotes:none}
+blockquote:before, blockquote:after,q:before, q:after{content:'';content:none}
+input,select,textarea,button{vertical-align:middle;font-size:100%}
+button{border:0 none;background-color:transparent;cursor:pointer}
+table{border-collapse:collapse;border-spacing:0}
+input:checked[type='checkbox']{background-color:#666;-webkit-appearance:checkbox}
+input[type='text'],input[type='password'],input[type='submit'],input[type='search'],input[type='tel'],input[type='email'],html input[type='button'],input[type='reset']{-webkit-appearance:none;border-radius:0}
+input[type='search']::-webkit-search-cancel-button{-webkit-appearance:none}
+body{-webkit-text-size-adjust:none;background:#eee}
+body,th,td,input,select,textarea,button{font-size:12px;line-height:1.5;font-family:system-ui, -apple-system, "Open Sans",sans-serif;color:#111}
+a{color:#333;text-decoration:none}
+a:active, a:hover{text-decoration:none}
+address,caption,cite,code,dfn,em,var{font-style:normal;font-weight:normal}
+
+/* common */
+html, body{height:100%}
+img{width:100%;vertical-align:top}
+.blind{position:absolute;overflow:hidden;clip:rect(0 0 0 0);width:1px;height:1px;margin:-1px}
+.wrap_movie{
+  width: 1180px;
+  margin: 0 auto;
+  padding: 50px 30px;
+}
+.box_g{
+  margin-top: 40px;
+  padding: 50px;
+  border-radius: 30px;
+  background: #fff;
+}
+.tit_movie{
+  display:inline-block;
+  font-size:30px;
+  padding-top:50px;
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(135deg, #e63b60, #151a7b);
+  -webkit-background-clip: text;
+  vertical-align:top;
+}
+.wrap_thumb{
+  position:relative;
+  width: 100%;
+  height: 280px;
+  background: #eee;
+}
+.wrap_thumb:before{
+  content:'';
+  position: absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  border-radius:10px;
+  border:1px solid #000;
+  opacity:0.08;
+}
+.wrap_thumb .ico_noimg{
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+}
+.wrap_thumb .ico_noimg:before{
+  display:block;
+  width:40px;
+  height:80px;
+  margin: 70px auto 0;
+  background: #e3e3e3;
+  box-shadow: 0 0 0 50px;
+  clip-path: polygon(100% 0, 63% 42%, 100% 42%, 0 100%, 37% 55%, 0 55%);
+  content: '';
+}

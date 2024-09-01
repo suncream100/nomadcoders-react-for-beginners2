@@ -1,0 +1,35 @@
+/* loading */
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.loading .ico_loading{
+  position: relative;
+  width: 30px;
+  height: 60px;
+}
+
+.loading .ico_loading:before,
+.loading .ico_loading:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #ffd401;
+  box-shadow: 0 0 0 50px;
+  clip-path: polygon(100% 0, 63% 42%, 100% 42%, 0 100%, 37% 55%, 0 55%);
+}
+.loading .ico_loading:after {
+  animation: loadingAni 1s infinite;
+  transform: perspective(300px) translateZ(0px)
+}
+@keyframes loadingAni {
+  to {transform: perspective(300px) translateZ(150px); opacity:0}
+}
