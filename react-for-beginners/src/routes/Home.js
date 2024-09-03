@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, Fragment } from "react";
 import Movie from "../components/Movie";
 import Loading from "../components/Loading";
 import styles from "./Home.module.css";
@@ -29,26 +29,30 @@ function Home() {
     getMovies();
   },[]);
   return (
-    <div className="wrap_movie">
-      <h1 className="tit_movie">개봉예정작 ✨</h1>
-      <div className="box_g">
-        <ul className={styles.list_movie}>
-          {movies.map((item) => (
-            <li key={item.id}>
-              <Movie
-                id={item.id}
-                title={item.title}
-                poster_img={item.poster_path}
-                overview={item.overview}
-                release_date={item.release_date}
-              />
-            </li>
-          ))}
-        </ul>
-        {currentPage === totalPages ? null : <button type="button" onClick={moreBtnAction} className={styles.btn_more}>더보기</button>}
-      </div>
+    <Fragment>
+      {!loading ?
+        <div className="wrap_movie">
+          <h1 className="tit_movie">개봉예정작 ✨</h1>
+          <div className="box_g">
+            <ul className={styles.list_movie}>
+              {movies.map((item) => (
+                <li key={item.id}>
+                  <Movie
+                    id={item.id}
+                    title={item.title}
+                    poster_img={item.poster_path}
+                    overview={item.overview}
+                    release_date={item.release_date}
+                  />
+                </li>
+              ))}
+            </ul>
+            {currentPage === totalPages ? null : <button type="button" onClick={moreBtnAction} className={styles.btn_more}>더보기</button>}
+          </div>
+        </div>
+      : null}
       {loading ? <Loading /> : null}
-    </div>
+    </Fragment>
   );
 }
 
