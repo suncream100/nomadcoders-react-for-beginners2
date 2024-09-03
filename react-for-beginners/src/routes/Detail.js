@@ -15,49 +15,43 @@ function Detail() {
       const apiArr = [
         {
           apiName : 'movieApi',
-          apiUrl : `https://api.themoviedb.org/3/movie/${id}?language=ko-KR&api_key=5984953a74d52b49b9aa45ad23721fa5`
+          apiUrl : `https://api.themoviedb.org/3/movie/${id}?language=ko-KR&api_key=5984953a74d52b49b9aa45ad23721fa5`,
+          setState: setMovie,
         },
         {
           apiName : 'countryApi',
           apiUrl : `https://api.themoviedb.org/3/configuration/countries?language=ko-KR&api_key=5984953a74d52b49b9aa45ad23721fa5`,
+          setState: setCountryName,
         },
         {
           apiName : 'creditApi',
-          apiUrl : `https://api.themoviedb.org/3/movie/${id}/credits?language=ko-KR&api_key=5984953a74d52b49b9aa45ad23721fa5`
+          apiUrl : `https://api.themoviedb.org/3/movie/${id}/credits?language=ko-KR&api_key=5984953a74d52b49b9aa45ad23721fa5`,
+          setState: (data) => {
+            const { cast, crew } = data;
+            setCredit([crew.find(item => item.department === 'Directing'), ...cast.slice(0, 5)]);
+          },
         }
       ];
       
       // Promise.allSetteled 여러 API 호출 결과와 값을 반환
       const promiseResults = await Promise.allSettled(
-        apiArr.map(async (url) => await (await fetch(url.apiUrl)).json())
+        apiArr.map(item => fetch(item.apiUrl).then(res => res.json()))
       );
 
       // 각 결과를 해당 state에 저장
-      apiArr.forEach((item, index) => {
-        if (promiseResults[index].status === 'fulfilled') {
-          switch (item.apiName) {
-            case 'movieApi':
-              setMovie(promiseResults[index].value);
-              break;
-            case 'countryApi':
-              setCountryName(promiseResults[index].value);
-              break;
-            case 'creditApi':
-              const {cast, crew} = promiseResults[index].value;
-              setCredit([crew.find(item => item.department === 'Directing'), ...cast.slice(0, 5)]);
-              break;
-            default:
-              break;
-          }
+      promiseResults.forEach((result, index) => {
+        if (result.status === 'fulfilled') {
+          apiArr[index].setState(result.value);
+        } else {
+          console.error(`에러 - ${apiArr[index].apiName}:`, result.reason);
         }
       });
     } catch (err) {
-      console.log(`error!`)
+      console.error('An unexpected error occurred:', err);
     } finally {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     fetchData();
   },[]);

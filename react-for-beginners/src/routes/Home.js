@@ -30,27 +30,25 @@ function Home() {
   },[]);
   return (
     <Fragment>
-      {!loading ?
-        <div className="wrap_movie">
-          <h1 className="tit_movie">개봉예정작 ✨</h1>
-          <div className="box_g">
-            <ul className={styles.list_movie}>
-              {movies.map((item) => (
-                <li key={item.id}>
-                  <Movie
-                    id={item.id}
-                    title={item.title}
-                    poster_img={item.poster_path}
-                    overview={item.overview}
-                    release_date={item.release_date}
-                  />
-                </li>
-              ))}
-            </ul>
-            {currentPage === totalPages ? null : <button type="button" onClick={moreBtnAction} className={styles.btn_more}>더보기</button>}
-          </div>
+      <div className="wrap_movie">
+        <h1 className="tit_movie">개봉예정작 ✨</h1>
+        <div className="box_g">
+          <ul className={styles.list_movie}>
+            {movies.map((item) => (
+              <li key={item.id}>
+                <Movie
+                  id={item.id}
+                  title={item.title}
+                  poster_img={item.poster_path}
+                  overview={item.overview}
+                  release_date={item.release_date}
+                />
+              </li>
+            ))}
+          </ul>
+          {currentPage === totalPages ? null : <button type="button" onClick={moreBtnAction} className={styles.btn_more}>더보기</button>}
         </div>
-      : null}
+      </div>
       {loading ? <Loading /> : null}
     </Fragment>
   );
